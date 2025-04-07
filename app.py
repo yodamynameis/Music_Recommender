@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import nltk
+nltk.download('punkt')  # Or any other resource you’re using like 'stopwords'
 from model import recommend  # only import what's needed!
 
 # Load cleaned dataset
@@ -42,7 +44,7 @@ if st.button("Recommend Songs"):
                         st.image(song['image_url'], width=120)
                 with col2:
                     st.markdown(f"**{song['name']}** by *{song['artist']}*")
-                    st.markdown(f"[🎧 Listen on Spotify]({song['exte    rnal_url']})")
+                    st.markdown(f"[🎧 Listen on Spotify]({song['external_url']})")
                     if song['preview_url']:
                         st.audio(song['preview_url'], format="audio/mp3")
         else:
